@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode dot background with gradient fade */
+.grid-paper-bg {
+  background-color: #fafafa;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.grid-paper-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.grid-paper-bg > :not(nav) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode dot background */
+.dark .grid-paper-bg {
+  background-color: #000000;
+}
+
+.dark .grid-paper-bg::before {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* Feature Card - Light Mode */
+.feature-card {
+  position: relative;
+  background-color: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 80px -20px rgba(0, 0, 0, 0.15);
+}
+
+/* Feature Card - Dark Mode */
+.dark .feature-card {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark .feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.dark .feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.dark .feature-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Brand logo: pointer-followed damped rotation */
+.brand-logo-icon {
+  transform-origin: 50% 50%;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotate(0deg);
+  image-rendering: auto;
+}

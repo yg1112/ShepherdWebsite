@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/shepherd_icon_512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/shepherd_icon_512.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shepherd — Watch Your Apps, Sleep Well</title>
+    <meta name="description" content="A lightweight macOS menu bar app that monitors your windows and alerts you the moment something needs attention. No OCR, no overhead." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shepherd — Watch Your Apps, Sleep Well" />
+    <meta property="og:description" content="A lightweight macOS menu bar app that monitors your windows and alerts you when something needs attention." />
+    <meta property="og:image" content="/shepherd_icon_512.png" />
+    <meta property="og:url" content="https://shepherd.dzgapp.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Shepherd — Watch Your Apps, Sleep Well" />
+    <meta name="twitter:description" content="A lightweight macOS menu bar app that monitors your windows and alerts you when something needs attention." />
+    <meta name="twitter:image" content="/shepherd_icon_512.png" />
+
+    <!-- Switzer Font -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/switzer@5.0.0/index.min.css" />
+
+    <style>
+      .mask-image-gradient {
+          mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+          -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
