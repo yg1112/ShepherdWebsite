@@ -42,8 +42,6 @@ const JourneyPostContent = ({ post, headingPrefix = 'journey' }) => {
     <div className="space-y-6">
       <div className="mb-8">
         <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-3">
-          <span>{post.date}</span>
-          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
           <span>{post.category}</span>
         </div>
         <h2 className="text-2xl md:text-3xl font-medium text-gray-900 dark:text-gray-100">{post.title}</h2>

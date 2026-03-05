@@ -96,7 +96,6 @@ const BuildJourneyPage = () => {
                         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                     }`}
                   >
-                    <p className="text-[11px] uppercase tracking-wide opacity-70 mb-1">{post.date}</p>
                     <p>{post.title}</p>
                   </button>
                 );
