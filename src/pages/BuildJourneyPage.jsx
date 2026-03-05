@@ -8,13 +8,13 @@ import { getLocalizedCopy } from '../i18n/localize';
 const pageCopy = {
   en: {
     title: 'Build Journey',
-    subtitle: 'Field notes on building Shepherd — the design decisions, architecture pivots, and what it means to build with AI.',
+    subtitle: 'Field notes on building Shepherd — the design decisions, architecture pivots, and tradeoffs behind a macOS utility.',
     selectPost: 'Select a post',
     posts: 'Posts',
   },
   zh: {
     title: 'Build Journey',
-    subtitle: '记录 Shepherd 的构建过程——设计决策、架构转向，以及与 AI 共建的思考。',
+    subtitle: '记录 Shepherd 的构建过程——设计决策、架构转向，以及一款 macOS 工具背后的取舍。',
     selectPost: '选择篇章',
     posts: '篇章',
   },

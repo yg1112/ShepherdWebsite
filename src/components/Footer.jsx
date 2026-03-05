@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// Link removed — /privacy and /terms are static HTML pages served outside the SPA
 import { Sun, Moon, Mail, Globe } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
@@ -42,22 +42,22 @@ export default function Footer() {
 
           {/* ---- Center: Links ---- */}
           <div className="flex items-center gap-5 text-sm order-1 sm:order-2">
-            <Link
-              to="/privacy"
+            <a
+              href="/privacy"
               className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               {t.privacy}
-            </Link>
-            <Link
-              to="/terms"
+            </a>
+            <a
+              href="/terms"
               className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               {t.terms}
-            </Link>
+            </a>
 
             {/* Contact (mailto) */}
             <a
-              href="mailto:contact@dzgapp.com"
+              href="mailto:dev@dzgapp.com"
               className="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               aria-label={t.contact}
             >

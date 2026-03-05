@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 
 const COPY = {
   en: {
-    tag: 'Build Together',
-    title: 'Shipped in public, built with AI.',
-    subtitle: 'Every commit in Shepherd is co-authored with Claude. Follow the journey.',
+    tag: 'Build Journey',
+    title: 'Shipped in public, refined in practice.',
+    subtitle: 'Follow the product evolution — architecture decisions, UX polish, and the lessons learned along the way.',
     cards: [
       {
         title: 'Build Journey',
@@ -17,12 +17,11 @@ const COPY = {
         cta: 'Read the Journey',
       },
     ],
-    browse: 'View on GitHub',
   },
   zh: {
-    tag: '共建中',
-    title: '公开迭代，AI 驱动。',
-    subtitle: 'Shepherd 的每一个 commit 都与 Claude 共同完成。跟随我们的旅程。',
+    tag: '开发历程',
+    title: '公开迭代，实践精炼。',
+    subtitle: '跟随产品的演进——架构决策、UX 打磨，以及一路走来的心得。',
     cards: [
       {
         title: '开发历程',
@@ -31,11 +30,8 @@ const COPY = {
         cta: '阅读历程',
       },
     ],
-    browse: '在 GitHub 查看',
   },
 };
-
-const GITHUB_URL = 'https://github.com/YukunGao/shepherd-releases';
 
 export default function BuildTogether() {
   const { language } = useAppPreferences();
@@ -58,7 +54,7 @@ export default function BuildTogether() {
         </p>
 
         {/* Cards */}
-        <div className="grid gap-6 sm:grid-cols-1 max-w-xl mb-10">
+        <div className="grid gap-6 sm:grid-cols-1 max-w-xl">
           {t.cards.map((card, i) => (
             <Link
               key={i}
@@ -78,17 +74,6 @@ export default function BuildTogether() {
             </Link>
           ))}
         </div>
-
-        {/* GitHub link */}
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors"
-        >
-          <Github size={16} />
-          {t.browse}
-        </a>
       </div>
     </section>
   );
