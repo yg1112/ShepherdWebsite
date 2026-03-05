@@ -78,34 +78,25 @@
 
     <h2>1. Overview</h2>
     <p>
-      Shepherd is a macOS menu bar utility that helps you monitor application windows for specific keywords and activity. It is built with a privacy-first architecture. Your data stays on your Mac, and we have intentionally designed the app to avoid collecting personal information.
-    </p>
-    <p>
-      This policy describes what data Shepherd does and does not access, how local monitoring works, and what information is transmitted if you choose to enable the optional Remote Supervision feature available in Shepherd Pro.
+      Shepherd is a macOS menu bar utility that monitors application windows for specific keywords and activity. Your data stays on your Mac. This policy describes how Shepherd handles data locally and what information is transmitted if you choose to enable the optional Remote Supervision feature.
     </p>
 
-    <h2>2. What We Do NOT Collect</h2>
-    <p>Shepherd does not perform any of the following:</p>
+    <h2>2. How Monitoring Works</h2>
+    <p>
+      All monitoring runs entirely on your Mac. Shepherd reads text content from application windows using native macOS Accessibility APIs and AppleScript. Keyword matching, alert evaluation, and all related logic execute locally on your device. No monitored content leaves your computer unless you explicitly enable Remote Supervision.
+    </p>
+
+    <h2>3. Data We Do Not Collect</h2>
     <ul>
-      <li><strong>No screenshots</strong> — Shepherd never captures, stores, or transmits screenshots of your screen.</li>
-      <li><strong>No OCR or image processing</strong> — There is no optical character recognition or pixel-level analysis of any kind.</li>
-      <li><strong>No audio capture</strong> — Shepherd does not record, process, or access your microphone or system audio.</li>
-      <li><strong>No keystroke logging</strong> — Shepherd does not monitor or record keyboard input.</li>
-      <li><strong>No analytics or behavioral tracking</strong> — We do not use analytics SDKs, telemetry, or any mechanism to track how you use the app.</li>
-      <li><strong>No training on user data</strong> — Your data is never used to train models or improve algorithms outside of your device.</li>
+      <li>No audio capture or microphone access</li>
+      <li>No keystroke logging or keyboard input monitoring</li>
+      <li>No analytics SDKs, telemetry, or behavioral tracking</li>
+      <li>No user data used for training models or algorithms</li>
     </ul>
-
-    <h2>3. Local Processing</h2>
-    <p>
-      All monitoring in Shepherd runs entirely on your Mac. The app reads text content from application windows using native macOS Accessibility APIs and AppleScript. This means window text is read directly from the operating system's accessibility tree — no screenshots, image analysis, or network requests are involved in the core monitoring process.
-    </p>
-    <p>
-      Keyword matching, alert evaluation, and all related logic execute locally on your device. No monitored content leaves your computer unless you explicitly enable Remote Supervision.
-    </p>
 
     <h2>4. Remote Supervision (Pro)</h2>
     <p>
-      Shepherd Pro includes an optional Remote Supervision feature that allows alerts to be forwarded to a remote endpoint so a designated supervisor can be notified. When this feature is enabled, the following metadata — and only this metadata — is transmitted:
+      Shepherd Pro includes an optional Remote Supervision feature that forwards alerts to a remote endpoint so you can stay informed from anywhere. When enabled, only the following metadata is transmitted:
     </p>
     <ul>
       <li>The name of the monitored window</li>
@@ -114,27 +105,26 @@
       <li>A timestamp of when the alert occurred</li>
     </ul>
     <p>
-      No window content, no screen captures, and no full text from the monitored application are ever sent. The actual text being monitored never leaves your Mac.
+      The actual text content being monitored is never sent. Only alert metadata leaves your Mac.
     </p>
 
     <h2>5. Data Storage</h2>
     <p>
-      Shepherd does not maintain a cloud database. Alert metadata sent through Remote Supervision is processed by a Cloudflare Worker and is ephemeral — it is not stored persistently. There is no user account system within Shepherd, and no personal data is retained on any server.
+      Shepherd does not maintain a cloud database. Alert metadata sent through Remote Supervision is processed by a Cloudflare Worker and is ephemeral — it is not stored persistently. There is no user account system within Shepherd.
     </p>
     <p>
-      Local preferences and configuration are stored on your Mac using standard macOS storage mechanisms (UserDefaults and Keychain) and remain entirely under your control.
+      Local preferences and configuration are stored on your Mac using standard macOS mechanisms (UserDefaults and Keychain) and remain entirely under your control.
     </p>
 
     <h2>6. Third-Party Services</h2>
-    <p>Shepherd interacts with the following third-party services:</p>
     <ul>
-      <li><strong>Cloudflare Workers</strong> — Used to relay alert metadata for the Remote Supervision feature. Cloudflare's privacy policy applies to the processing of this data in transit.</li>
-      <li><strong>LemonSqueezy</strong> — Used to handle subscription payments for Shepherd Pro. Payment information is collected and processed entirely by LemonSqueezy; Shepherd does not receive or store your payment details.</li>
+      <li><strong>Cloudflare Workers</strong> — Used to relay alert metadata for Remote Supervision. Cloudflare's privacy policy applies to data processed in transit.</li>
+      <li><strong>LemonSqueezy</strong> — Handles subscription payments for Shepherd Pro. Payment information is collected and processed entirely by LemonSqueezy; Shepherd does not receive or store your payment details.</li>
     </ul>
 
     <h2>7. Contact</h2>
     <p>
-      If you have questions about this privacy policy or how Shepherd handles your data, please contact us at
+      If you have questions about this privacy policy, please contact us at
       <a href="mailto:support@dzgapp.com">support@dzgapp.com</a>.
     </p>
 

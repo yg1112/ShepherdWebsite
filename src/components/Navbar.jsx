@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Download, ChevronDown } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAppPreferences, languageLabels } from '../contexts/AppPreferencesContext';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 import shepherdLogo from '../assets/shepherd_icon_512.png';
 
@@ -30,68 +30,16 @@ const NAV_LINKS = [
   { key: 'buildJourney', to: '/build-journey' },
 ];
 
-const LANGUAGE_OPTIONS = [
-  { code: 'en', label: 'English' },
-  { code: 'zh', label: '简体中文' },
-  { code: 'zh-TW', label: '繁體中文' },
-];
-
 export default function Navbar({ isScrolled }) {
-  const { language, setLanguage } = useAppPreferences();
+  const { language } = useAppPreferences();
   const t = getLocalizedCopy(COPY, language);
   const location = useLocation();
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef(null);
 
-  // ---------- brand-logo damped rotation ----------
+  // ---------- brand-logo double-bounce ("bark bark") ----------
   const logoRef = useRef(null);
-  const angleRef = useRef(0);
-  const velocityRef = useRef(0);
-  const rafRef = useRef(null);
-  const lastMouseRef = useRef({ x: 0, y: 0 });
-
-  const tickLogo = useCallback(() => {
-    const DAMPING = 0.92;
-    const RESTORE = 0.04;
-
-    velocityRef.current *= DAMPING;
-    angleRef.current += velocityRef.current;
-    angleRef.current += (0 - angleRef.current) * RESTORE;
-
-    if (logoRef.current) {
-      logoRef.current.style.transform = `rotate(${angleRef.current}deg)`;
-    }
-    rafRef.current = requestAnimationFrame(tickLogo);
-  }, []);
-
-  useEffect(() => {
-    rafRef.current = requestAnimationFrame(tickLogo);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [tickLogo]);
-
-  const handlePointerMove = useCallback((e) => {
-    const dx = e.clientX - lastMouseRef.current.x;
-    lastMouseRef.current = { x: e.clientX, y: e.clientY };
-    velocityRef.current += dx * 0.08;
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('pointermove', handlePointerMove);
-    return () => window.removeEventListener('pointermove', handlePointerMove);
-  }, [handlePointerMove]);
-
-  // ---------- close language dropdown on outside click ----------
-  useEffect(() => {
-    const onClickOutside = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setLangOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', onClickOutside);
-    return () => document.removeEventListener('mousedown', onClickOutside);
-  }, []);
+  const [logoBounce, setLogoBounce] = useState(false);
 
   // ---------- close mobile menu on route change ----------
   useEffect(() => {
@@ -115,13 +63,19 @@ export default function Navbar({ isScrolled }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* ---- Logo & Brand ---- */}
-          <Link to="/" className="flex items-center gap-2.5 group" aria-label="Shepherd home">
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 group"
+            aria-label="Shepherd home"
+            onPointerEnter={() => setLogoBounce(true)}
+          >
             <img
               ref={logoRef}
               src={shepherdLogo}
               alt="Shepherd logo"
-              className="brand-logo-icon h-8 w-8 rounded-lg"
+              className={`h-8 w-8 rounded-lg${logoBounce ? ' bark-bounce' : ''}`}
               draggable={false}
+              onAnimationEnd={() => setLogoBounce(false)}
             />
             <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
               Shepherd
@@ -143,50 +97,6 @@ export default function Navbar({ isScrolled }) {
                 {t[key]}
               </Link>
             ))}
-
-            {/* ---- Language selector ---- */}
-            <div className="relative ml-1" ref={langRef}>
-              <button
-                onClick={() => setLangOpen((prev) => !prev)}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/60 dark:hover:bg-white/5 transition-colors"
-                aria-label="Change language"
-              >
-                {languageLabels[language]}
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
-                />
-              </button>
-
-              <AnimatePresence>
-                {langOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-1 w-36 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
-                  >
-                    {LANGUAGE_OPTIONS.map(({ code, label }) => (
-                      <button
-                        key={code}
-                        onClick={() => {
-                          setLanguage(code);
-                          setLangOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                          language === code
-                            ? 'bg-brand-primary/10 text-brand-primary dark:text-blue-400 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
 
             {/* ---- Download CTA ---- */}
             <a
@@ -233,23 +143,6 @@ export default function Navbar({ isScrolled }) {
                   {t[key]}
                 </Link>
               ))}
-
-              {/* Mobile language selector */}
-              <div className="flex items-center gap-2 px-3 py-2.5">
-                {LANGUAGE_OPTIONS.map(({ code, label }) => (
-                  <button
-                    key={code}
-                    onClick={() => setLanguage(code)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                      language === code
-                        ? 'bg-brand-primary/10 text-brand-primary dark:text-blue-400'
-                        : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
 
               {/* Mobile download */}
               <a

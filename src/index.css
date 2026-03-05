@@ -81,12 +81,20 @@
   z-index: 1;
 }
 
-/* Brand logo: pointer-followed damped rotation */
-.brand-logo-icon {
-  transform-origin: 50% 50%;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: rotate(0deg);
-  image-rendering: auto;
+/* Brand logo: double-bounce on hover ("bark bark") */
+@keyframes bark-bounce {
+  0%   { transform: translateY(0); }
+  12%  { transform: translateY(-6px); }
+  24%  { transform: translateY(0); }
+  32%  { transform: translateY(-1px); }
+  40%  { transform: translateY(0); }
+  52%  { transform: translateY(-5px); }
+  64%  { transform: translateY(0); }
+  72%  { transform: translateY(-1px); }
+  80%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+.bark-bounce {
+  animation: bark-bounce 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }

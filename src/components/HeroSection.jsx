@@ -14,7 +14,7 @@ const copy = {
     title: 'Watch Your Apps.',
     subtitle: 'Sleep Well.',
     description:
-      'A lightweight macOS menu bar app that monitors your windows and alerts you the moment something needs attention. No OCR, no overhead\u2014just native APIs and instant notifications.',
+      'A lightweight macOS menu bar app that watches over your windows so you don\u2019t have to. Step away to think, build, or spend time with family\u2014Shepherd will let you know the moment something needs your attention.',
     download: 'Download for macOS',
     worksWith: 'Monitors any app with a window',
     screenshotAlt: 'App screenshot placeholder',
@@ -23,7 +23,7 @@ const copy = {
     title: '守护你的应用。',
     subtitle: '安心工作。',
     description:
-      '轻量级 macOS 菜单栏应用，监控窗口状态，第一时间通知你。无 OCR、无截图，原生 API 驱动，即时告警。',
+      '轻量级 macOS 菜单栏应用，替你守护每一个窗口。安心去思考、去构建、去陪伴家人\u2014\u2014Shepherd 会在第一时间通知你。',
     download: '下载 macOS 版本',
     worksWith: '监控任何有窗口的应用',
     screenshotAlt: '应用截图占位',

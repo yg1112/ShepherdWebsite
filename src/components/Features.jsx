@@ -45,7 +45,7 @@ const featuresCopy = {
     {
       title: 'Semantic Text Analysis',
       description:
-        'Shepherd reads terminal output natively through AppleScript\u2014no OCR, no screenshots, no overhead. It understands what your terminal is saying and alerts you on keywords that matter.',
+        'Shepherd reads terminal output natively through macOS APIs\u2014lightweight, fast, and built right into the system. It understands what your terminal is saying and alerts you on keywords that matter.',
       imageHint: 'Native terminal text reading',
     },
     {
@@ -83,7 +83,7 @@ const featuresCopy = {
     {
       title: '\u8BED\u4E49\u6587\u672C\u5206\u6790',
       description:
-        'Shepherd \u901A\u8FC7 AppleScript \u539F\u751F\u8BFB\u53D6\u7EC8\u7AEF\u8F93\u51FA\u2014\u2014\u65E0 OCR\u3001\u65E0\u622A\u56FE\u3001\u65E0\u6027\u80FD\u5F00\u9500\u3002\u5B83\u7406\u89E3\u7EC8\u7AEF\u6B63\u5728\u8BF4\u4EC0\u4E48\uFF0C\u5E76\u5728\u5339\u914D\u5173\u952E\u8BCD\u65F6\u63D0\u9192\u4F60\u3002',
+        'Shepherd \u901A\u8FC7 macOS \u539F\u751F API \u8BFB\u53D6\u7EC8\u7AEF\u8F93\u51FA\u2014\u2014\u8F7B\u91CF\u3001\u5FEB\u901F\u3001\u4E0E\u7CFB\u7EDF\u6DF1\u5EA6\u96C6\u6210\u3002\u5B83\u7406\u89E3\u7EC8\u7AEF\u6B63\u5728\u8BF4\u4EC0\u4E48\uFF0C\u5E76\u5728\u5339\u914D\u5173\u952E\u8BCD\u65F6\u63D0\u9192\u4F60\u3002',
       imageHint: 'Native terminal text reading',
     },
     {
@@ -173,12 +173,6 @@ function FeatureRow({ feature, icon, index }) {
 
       {/* Text column */}
       <div className={['space-y-4', isReversed ? 'md:[direction:ltr]' : ''].filter(Boolean).join(' ')}>
-        <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002FA7]/10 dark:bg-[#002FA7]/20">
-          {React.createElement(icon, {
-            className: 'h-5 w-5 text-[#002FA7] dark:text-[#8FA8FF]',
-            strokeWidth: 1.75,
-          })}
-        </div>
         <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {feature.title}
         </h3>

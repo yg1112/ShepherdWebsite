@@ -1,22 +1,23 @@
 import React from 'react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext.jsx';
 import { getLocalizedCopy } from '../i18n/localize.js';
+import { Terminal as TerminalIcon, Monitor, Code2, Wrench, Globe } from 'lucide-react';
 
 /**
- * Apps whose windows Shepherd can monitor.
- * Icons are pulled from the simple-icons CDN.
- * `brandHex` is the official brand colour used for the hover state.
+ * Apps Shepherd can monitor:
+ * - Heartbeat monitoring works for ANY app with a window
+ * - Semantic text analysis works specifically with Terminal.app and iTerm2 via AppleScript
+ *
+ * We show the key apps users care about — Terminal, iTerm2, plus common apps
+ * that benefit from heartbeat/crash monitoring.
  */
 const TOOLS = [
-  { name: 'Terminal',  slug: 'gnometerminal',      brandHex: '#241F31' },
-  { name: 'iTerm2',   slug: 'iterm2',              brandHex: '#000000' },
-  { name: 'VS Code',  slug: 'visualstudiocode',    brandHex: '#007ACC' },
-  { name: 'Cursor',   slug: 'cursor',              brandHex: '#000000' },
-  { name: 'Xcode',    slug: 'xcode',               brandHex: '#147EFB' },
-  { name: 'Warp',     slug: 'warp',                brandHex: '#01A4FF' },
+  { name: 'Terminal',  icon: TerminalIcon, color: '#241F31' },
+  { name: 'iTerm2',   icon: TerminalIcon, color: '#000000' },
+  { name: 'VS Code',  icon: Code2,        color: '#007ACC' },
+  { name: 'Xcode',    icon: Wrench,       color: '#147EFB' },
+  { name: 'Safari',   icon: Globe,        color: '#006CFF' },
 ];
-
-const ICON_CDN = 'https://cdn.simpleicons.org';
 
 const copy = {
   en: { label: 'Monitors any app with a window' },
@@ -27,13 +28,11 @@ const copy = {
  * ToolLogos
  *
  * Renders a horizontal row of app icons representing windows Shepherd can
- * monitor. Each icon is 36 x 36, greyed out by default, and reveals its
- * brand colour on hover via a CSS filter trick.
+ * monitor. Uses Lucide icons instead of external CDN to avoid broken images.
  */
 export default function ToolLogos({ className = '' }) {
-  const { language, theme } = useAppPreferences();
+  const { language } = useAppPreferences();
   const t = getLocalizedCopy(copy, language);
-  const isDark = theme === 'dark';
 
   return (
     <div className={`flex flex-col items-center gap-4 ${className}`}>
@@ -43,47 +42,25 @@ export default function ToolLogos({ className = '' }) {
       </p>
 
       {/* Icon row */}
-      <div className="flex flex-wrap items-center justify-center gap-6">
+      <div className="flex flex-wrap items-center justify-center gap-8">
         {TOOLS.map((tool) => (
-          <a
-            key={tool.slug}
-            href={`#${tool.slug}`}
+          <div
+            key={tool.name}
             title={tool.name}
-            className="tool-icon group relative flex items-center justify-center"
-            onClick={(e) => e.preventDefault()}
+            className="group flex flex-col items-center gap-1.5"
           >
-            <img
-              src={`${ICON_CDN}/${tool.slug}/${isDark ? 'FFFFFF' : '9CA3AF'}`}
-              alt={tool.name}
-              width={36}
-              height={36}
-              loading="lazy"
-              className="h-9 w-9 object-contain transition-all duration-300 group-hover:scale-110"
-              style={{
-                filter: 'grayscale(100%) opacity(0.45)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.filter = 'grayscale(0%) opacity(1)';
-                e.currentTarget.src = `${ICON_CDN}/${tool.slug}/${tool.brandHex.replace('#', '')}`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.filter = 'grayscale(100%) opacity(0.45)';
-                e.currentTarget.src = `${ICON_CDN}/${tool.slug}/${isDark ? 'FFFFFF' : '9CA3AF'}`;
-              }}
-            />
-          </a>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/[0.06] transition-colors group-hover:bg-gray-200 dark:group-hover:bg-white/10">
+              <tool.icon
+                className="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-hover:text-gray-700 dark:group-hover:text-gray-200"
+                strokeWidth={1.75}
+              />
+            </div>
+            <span className="text-[11px] font-medium text-gray-400 dark:text-gray-500 transition-colors group-hover:text-gray-600 dark:group-hover:text-gray-300">
+              {tool.name}
+            </span>
+          </div>
         ))}
       </div>
-
-      {/* Inline styles for the tool-icon hover pulse */}
-      <style>{`
-        .tool-icon img {
-          transition: filter 0.3s ease, transform 0.3s ease;
-        }
-        .dark .tool-icon img {
-          filter: grayscale(100%) opacity(0.45) invert(0);
-        }
-      `}</style>
     </div>
   );
 }
