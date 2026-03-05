@@ -83,14 +83,14 @@ const tiers = [
         'Semantic text analysis for terminal output.',
         'Built-in keyword presets (Agent Coding, Build & Deploy, Runtime Ops, Test).',
         'Webhook integration for custom alerts.',
-        'Remote supervision via Cloudflare Worker\u2014check status from your phone.',
+        'Remote supervision\u2014check status from your phone, anywhere.',
       ],
       zh: [
         '无限监控窗口。',
         '终端输出语义文本分析。',
         '内置关键词预设（Agent 编程、构建部署、运行时运维、测试）。',
         'Webhook 集成自定义告警。',
-        '通过 Cloudflare Worker 远程监控——手机随时查看状态。',
+        '远程监控——手机随时查看状态，随时随地。',
       ],
     },
     cta: { en: 'Start Subscription', zh: '开始订阅' },
@@ -140,8 +140,8 @@ const faqItems = [
       zh: '远程监控如何工作？',
     },
     a: {
-      en: 'Shepherd pushes alert data to a Cloudflare Worker endpoint. You can view your monitoring dashboard from any device with a web browser.',
-      zh: 'Shepherd 将告警数据推送到 Cloudflare Worker 端点。你可以在任何有浏览器的设备上查看监控面板。',
+      en: 'Shepherd pushes alert data to a secure cloud endpoint. You can view your monitoring dashboard from any device with a web browser.',
+      zh: 'Shepherd 将告警数据推送到安全的云端。你可以在任何有浏览器的设备上查看监控面板。',
     },
   },
   {
@@ -483,10 +483,6 @@ export default function PricingPage() {
                     {step}
                   </h3>
 
-                  {/* connector line (hidden on last) */}
-                  {i < 2 && (
-                    <div className="absolute hidden h-px w-16 bg-gradient-to-r from-brand-primary/30 to-transparent sm:block" />
-                  )}
                 </motion.div>
               );
             })}

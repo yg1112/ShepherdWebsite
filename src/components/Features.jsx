@@ -57,7 +57,7 @@ const featuresCopy = {
     {
       title: 'Remote Supervision',
       description:
-        'Step away from your desk with confidence. Shepherd pushes alerts to a Cloudflare Worker endpoint, so you can check your app status from your phone\u2014anywhere in the world.',
+        'Step away from your desk with confidence. Shepherd pushes alerts to the cloud, so you can check your app status from your phone\u2014anywhere in the world.',
       imageHint: 'Mobile remote monitoring dashboard',
     },
     {
@@ -95,7 +95,7 @@ const featuresCopy = {
     {
       title: '\u8FDC\u7A0B\u76D1\u63A7',
       description:
-        '\u653E\u5FC3\u79BB\u5F00\u5DE5\u4F4D\u3002Shepherd \u5C06\u544A\u8B66\u63A8\u9001\u5230 Cloudflare Worker \u7AEF\u70B9\uFF0C\u4F60\u53EF\u4EE5\u5728\u624B\u673A\u4E0A\u968F\u65F6\u67E5\u770B\u5E94\u7528\u72B6\u6001\u2014\u2014\u65E0\u8BBA\u8EAB\u5904\u4F55\u5730\u3002',
+        '\u653E\u5FC3\u79BB\u5F00\u5DE5\u4F4D\u3002Shepherd \u5C06\u544A\u8B66\u63A8\u9001\u5230\u4E91\u7AEF\uFF0C\u4F60\u53EF\u4EE5\u5728\u624B\u673A\u4E0A\u968F\u65F6\u67E5\u770B\u5E94\u7528\u72B6\u6001\u2014\u2014\u65E0\u8BBA\u8EAB\u5904\u4F55\u5730\u3002',
       imageHint: 'Mobile remote monitoring dashboard',
     },
     {
